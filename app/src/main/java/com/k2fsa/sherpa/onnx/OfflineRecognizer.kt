@@ -2,6 +2,7 @@ package com.k2fsa.sherpa.onnx
 
 import android.content.res.AssetManager
 
+// Converts Speech To Text
 data class OfflineRecognizerResult(
     val text: String,
     val tokens: Array<String> = emptyArray(),

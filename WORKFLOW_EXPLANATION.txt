@@ -1,0 +1,30 @@
+SHERPA-ONNX AUDIO PROCESSING WORKFLOW
+====================================
+
+The application processes audio in a sequential pipeline, using Timestamps to bridge Speaker Identity with Transcribed Text.
+
+1. DIARIZATION PHASE (THE "WHO" & "WHEN")
+----------------------------------------
+Goal: Map out the conversation structure.
+
+- SEGMENTATION: Scans audio for speech activity and marks start/end times (Removes silence).
+- EMBEDDING: Converts the voice in each segment into a unique mathematical "Voice Fingerprint".
+- CLUSTERING: Groups similar fingerprints together to assign labels (e.g., Speaker 1, Speaker 2).
+
+2. TRANSCRIPTION PHASE (THE "WHAT")
+-----------------------------------
+Goal: Convert speech sound into written text.
+
+- SLICING: Uses timestamps from Phase 1 to crop the original audio into speaker-specific chunks.
+- ASR (Whisper): Processes each cropped chunk to generate text for that specific speaker.
+
+3. INTEGRATION PHASE (THE "GLUE")
+---------------------------------
+Goal: Prepare the final output for the user.
+
+- MERGING: Pairs Speaker Labels with their corresponding Text based on shared timestamps.
+- POLISHING: Joins consecutive segments from the same speaker for better readability.
+
+
+SUMMARY OF THE CHAIN:
+Audio Input -> Segmentation -> Embedding -> Clustering -> Slicing -> Transcribing -> Merging -> UI Display

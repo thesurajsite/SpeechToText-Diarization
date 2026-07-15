@@ -2,6 +2,14 @@ package com.k2fsa.sherpa.onnx
 
 import android.content.res.AssetManager
 
+
+/**
+ * Sherpa-ONNX: Core offline engine handling:
+ * 1. Transcription (ASR via Whisper/Paraformer)
+ * 2. Speaker Diarization (Segmentation & Clustering)
+ * 3. Audio Feature Extraction for ONNX models
+ */
+
 data class OfflineSpeakerSegmentationPyannoteModelConfig(
     var model: String = "",
 )
