@@ -25,6 +25,9 @@ object TranscriptionPipeline {
         }
 
         val items = mutableListOf<TranscriptItem>()
+        val speakerMap = mutableMapOf<Int, Int>()
+        var nextSpeakerIndex = 1
+
         for (segment in segments) {
             val startIndex = (segment.startTime * SAMPLE_RATE).toInt().coerceAtLeast(0)
             val endIndex = (segment.endTime * SAMPLE_RATE).toInt().coerceAtMost(samples.size)
@@ -38,9 +41,11 @@ object TranscriptionPipeline {
                 continue
             }
 
+            val displaySpeakerId = speakerMap.getOrPut(segment.speakerId) { nextSpeakerIndex++ }
+
             items.add(
                 TranscriptItem(
-                    speakerLabel = "Speaker ${segment.speakerId + 1}",
+                    speakerLabel = "Speaker $displaySpeakerId",
                     text = text,
                     startTime = segment.startTime,
                     endTime = segment.endTime,
