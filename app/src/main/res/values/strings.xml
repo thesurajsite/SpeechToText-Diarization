@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Diarized Transcription</string>
+    <string name="choose_wav_file">Choose WAV file</string>
+    <string name="loading">Processing audio...</string>
+    <string name="no_speech_detected">No speech detected</string>
+    <string name="pick_prompt">Pick a 16kHz mono 16-bit WAV file to transcribe.</string>
+    <string name="wav_format_error">Please provide 16kHz mono 16-bit WAV audio</string>
+</resources>
